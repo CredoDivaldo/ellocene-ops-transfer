@@ -1,0 +1,53 @@
+# Base de Conhecimento de Pessoas — holding Ellocene
+
+> **Que é:** fonte única de verdade sobre **quem faz o quê na holding e nas filhas** — papéis, responsabilidades, autoridade e decisão. Todo agente MUST consultá-la antes de atribuir qualquer `Responsável` a Task, Document, Project ou Meeting.
+> **Regra AI-native (C6):** um agente não atribui uma tarefa a uma pessoa sem confirmar nesta base que o domínio da tarefa é dessa pessoa. Sem correspondência → escalar ao @guardiao para decisão do Credo.
+> **Origem:** elicitação directa do Credo em 2026-09-11 (~04:20 WAT) · **Mantenedor:** @governanca · mudanças de papel só com verificação do Credo.
+
+## Quem
+
+| Pessoa | Papel | Domínio de responsabilidade | Autoridade e limites | Não faz |
+|---|---|---|---|---|
+| **Credo Divaldo Paulo Lopes** (operador) | Fundador, operador do squad; 30% Holding | Direcção geral do grupo; portfólio (criar/fechar filhas, equity, investimento); **identidade visual de TODAS as empresas**; **UX design das interfaces das apps**; aprovação de contratos e documentos (gate `Aprovado por`); pricing; documentação (sempre via squad — @registo/@processos/@docs) | Única autoridade de gate humano Credo; delega execução, não decisão de constituição/equity | Execução material de entregáveis e dev (delega) |
+| **Belmiro Lopes Ngola** | Sócio (40% — maior accionista) | **Desenvolvimento de software** (domínio principal) e configurações técnicas; networking — estabelecer parcerias, rede de contactos, trazer clientes grandes. Executa a maioria do trabalho técnico (MVPs, landings, automações), com suporte do Edson nas partes mais back/obscuras | Desenvolve a partir da identidade/UX definidos pelo Credo; NÃO é responsável pelo design/UX | Design/UX (Credo); aprovação de contratos (Credo); comercial de contas (Celson) |
+| **Celson do Rosário Coelho António** | Sócio (20%); operações comerciais Blimari/Sunel | **Comercial e clientes**: facturas proforma, cobranças, comunicação e relatórios a clientes; **Marketing**: copywriting, design gráfico, realização/captação/edição de vídeo, tráfego pago; gera assets COM as identidades criadas pelo Credo; entregáveis do Pacote Starter; operações no terreno nos clientes (Sunel/Blimari) | Cumpre prazos acordados com clientes; não aprova contratos nem define pricing | Aprovação de contratos (Credo); preços (Credo); dev (Belmiro) |
+| **Edson Fernando Deia Guerreiro** | Sócio (10%) | **Camada técnica invisível**: APIs, backend, cibersegurança, hacking ético; negociações com providers, implementação de novos modelos, pagamentos a providers; gestão da comunidade Discord; marketing underground (Reddit, etc.) | Suporte ao Belmiro nas partes back/obscuras; **nenhum cliente o vê** — quase não sai de casa; não decide pricing nem equity | Front com clientes (Celson); design (Credo); dev principal (Belmiro) |
+
+> ⚠️ **KYC:** BI Edson expira **2026-09-19** — renovação é responsabilidade do PRÓPRIO Edson (Credo só pode lembrar).
+
+## Cadeia criativa (como o trabalho de marca/flui)
+
+1. **Credo** define identidade visual da empresa + UX das interfaces.
+2. **Belmiro** desenvolve (app, landing, sistema) sobre essa identidade/UX.
+3. **Celson** gera os assets de marketing (copy, gráfica, vídeo, tráfego) com essa identidade.
+
+## Matriz de atribuição por domínio
+
+| Domínio da tarefa | Responsável por omissão | Backup |
+|---|---|---|
+| Identidade visual de qualquer empresa | **Credo** (única) | — |
+| UX design de interfaces/apps | **Credo** (única) | — |
+| Desenvolvimento de software / MVPs / landings / automações | **Belmiro** | Edson (back/obscuras) |
+| APIs, backend, cibersegurança, providers (negociação/pagamento), modelos IA | **Edson** | Belmiro |
+| Comunidade Discord / marketing underground (Reddit) | **Edson** | — |
+| Marketing: copywriting, design gráfico, vídeo, tráfego pago, assets | **Celson** | Credo |
+| Comunicação com cliente + facturas/cobranças/relatórios | **Celson** | Credo |
+| Entregáveis Pacote Starter (fichas, QR, catálogos) | **Celson** | Credo |
+| Operações no terreno nos clientes | **Celson** | Edson |
+| Networking / parcerias / trazer clientes grandes | **Belmiro** | Credo |
+| Documentação (SOPs, actas, docs internos) | **Credo** (via squad) | — |
+| Aprovação de contratos / gates de documento | **Credo** (única) | — |
+| Pricing / propostas comerciais | **Credo** | — |
+| Portfólio / novas filhas / equity | **Credo** (única) | — |
+
+## Como os agentes usam isto
+
+1. `@planos`, `@actas`, `@guardiao` MUST ler esta base ANTES de preencher `Responsável`.
+2. Domínio bate com a matriz → atribuir à pessoa por omissão (backup se sobrecarregada — ver cockpit).
+3. Não bate com nenhuma → escalar ao Credo, nunca atribuir a olho.
+4. Nova pessoa ou mudança de papel → @governanca actualiza com flag `precisa_verificacao: credo` até confirmação humana.
+
+## Pendências de verificação
+
+- [x] Papéis validados pelo Credo por elicitação (2026-09-11).
+- [ ] Email/BI de cada sócio no Fibery `Socio` — completar KYC (Edson renova o BI dele até 2026-09-19).

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altars — Parceria de Crescimento · crossmalen</title>
+<style>
+  :root{
+    --bg:#fbfaf7;
+    --white:var(--bg);
+    --ink:#1a1815;
+    --muted:#57524a;
+    --gold:#b9974a;
+    --gold-soft:#d9c9a0;
+    --gold-deep:#7c5f31;
+    --line:#e6e0d2;
+    --panel:#fdfcf8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{size:A4;margin:0;}
+  html,body{
+    font-family:-apple-system,'Helvetica Neue',Helvetica,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    font-size:10pt;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:210mm;height:297mm;
+    padding:20mm 22mm 14mm 22mm;
+    position:relative;
+    display:flex;flex-direction:column;
+    page-break-after:always;
+    break-after:page;
+    overflow:hidden;
+    box-sizing:border-box;
+    background:var(--bg);
+  }
+  .page > *{flex-shrink:0;}
+  p{margin-bottom:3.5mm;text-align:left;font-weight:400;color:#2b2823;}
+  p,li,td,th,h1,h2,h3,h4{text-align:left;}
+  strong,b{font-weight:500;color:var(--ink);}
+  em{font-style:normal;color:var(--gold-deep);}
+
+  h1,h2,h3{font-family:inherit;font-weight:200;letter-spacing:.3px;color:var(--ink);}
+  h2{font-size:16pt;font-weight:200;margin-bottom:4mm;line-height:1.25;}
+  h3{font-size:10.5pt;font-weight:300;margin-bottom:2.5mm;letter-spacing:.5px;}
+  .lead{font-size:11pt;font-weight:300;line-height:1.7;color:#2b2823;}
+  .sublead{font-size:9.5pt;font-weight:300;color:var(--muted);margin-top:-1mm;margin-bottom:3mm;}
+
+  .section-head{margin-bottom:7mm;}
+  .section-head .idx{font-size:7.5pt;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:2mm;display:block;}
+  .section-head h2{margin:0 0 2.5mm 0;}
+  .section-head .rule{width:14mm;height:1px;background:var(--gold);}
+
+  .cover{padding:16mm 22mm 14mm 22mm;}
+  .cover .frame{position:absolute;top:9mm;left:9mm;right:9mm;bottom:9mm;border:0.7px solid var(--gold-soft);pointer-events:none;}
+  .cover .top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;}
+  .brand{font-size:14pt;font-weight:200;letter-spacing:9px;text-transform:uppercase;color:var(--ink);}
+  .brand .dot{color:var(--gold);}
+  .cover .doc-tag{font-size:7pt;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.8;font-weight:300;}
+  .cover .center{margin-top:28mm;position:relative;z-index:1;}
+  .cover .kicker{font-size:8pt;letter-spacing:4.5px;text-transform:uppercase;color:var(--gold-deep);font-weight:400;margin-bottom:8mm;}
+  .cover h1{font-size:24pt;font-weight:200;line-height:1.3;max-width:145mm;letter-spacing:.5px;}
+  .cover h1 .accent{color:var(--gold-deep);}
+  .cover .sub{margin-top:8mm;font-size:10pt;font-weight:300;color:var(--muted);max-width:130mm;line-height:1.8;}
+  .cover .rule-gold{width:100%;height:1px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-soft) 40%,transparent 100%);margin-top:12mm;}
+
+  .seal{position:absolute;bottom:32mm;right:18mm;width:32mm;height:32mm;border-radius:50%;border:0.7px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;z-index:1;}
+  .seal::before{content:"";position:absolute;width:26mm;height:26mm;border-radius:50%;border:0.5px solid var(--gold-soft);}
+  .seal .inner{text-align:center;}
+  .seal .inner .a{font-size:6.5pt;letter-spacing:2.5px;color:var(--gold-deep);font-weight:400;}
+  .seal .inner .b{font-size:5.5pt;letter-spacing:1.5px;color:var(--muted);font-weight:300;margin-top:1mm;}
+
+  .cover .bottom{border-top:0.7px solid var(--gold-soft);padding-top:5mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--muted);margin-top:auto;position:relative;z-index:1;font-weight:300;}
+  .cover .bottom b{color:var(--ink);font-weight:400;}
+  .cover .bottom .col{line-height:1.8;}
+
+  .flow{display:flex;margin-top:10mm;gap:0;position:relative;z-index:1;}
+  .flow .node{flex:1;border-top:0.7px solid var(--gold);position:relative;padding-top:7mm;}
+  .flow .node .dot{position:absolute;top:-2.2px;left:0;width:4px;height:4px;border-radius:50%;background:var(--gold);}
+  .flow .node .st{font-size:7.5pt;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);font-weight:400;margin-bottom:2mm;}
+  .flow .node .ds{font-size:7.5pt;color:var(--muted);line-height:1.6;padding-right:4mm;font-weight:300;}
+  .flow .node + .node{margin-left:6mm;}
+
+  .steps{margin:3mm 0 2mm;}
+  .step{display:flex;gap:5mm;padding:3.5mm 0;border-bottom:0.6px solid var(--line);}
+  .step:last-child{border:none;}
+  .step .n{width:8.5mm;height:8.5mm;border:0.7px solid var(--gold);color:var(--gold-deep);font-weight:300;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;font-size:8.5pt;margin-top:.5mm;}
+  .step .tx h4{font-size:10pt;font-weight:400;margin-bottom:1mm;letter-spacing:.3px;color:var(--ink);}
+  .step .tx p{font-size:9pt;color:#2b2823;margin:0;font-weight:400;line-height:1.55;}
+
+  ul.clean{list-style:none;margin:2.5mm 0 3mm;}
+  ul.clean li{padding:2.2mm 0 2.2mm 6mm;border-bottom:0.6px solid var(--line);position:relative;font-size:9pt;font-weight:400;color:#2b2823;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:5.5mm;width:3.5mm;height:0.7px;background:var(--gold);}
+
+  ul.check{list-style:none;margin:2.5mm 0;}
+  ul.check li{padding:2mm 0 2mm 7mm;position:relative;font-size:9pt;font-weight:400;color:#2b2823;}
+  ul.check li::before{content:"";position:absolute;left:0;top:4.5mm;width:4mm;height:2.5mm;border-left:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(-45deg);}
+
+  .panel{border:0.7px solid var(--gold-soft);background:var(--panel);padding:5mm 6mm;margin:3.5mm 0;}
+  .panel .blk-label{font-size:7pt;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-deep);font-weight:400;margin-bottom:2.5mm;display:block;}
+  .panel p{color:#2b2823;margin-bottom:2mm;font-size:9pt;}
+  .panel p:last-child{margin-bottom:0;}
+
+  .scope-grid{display:flex;gap:6mm;margin:3mm 0;}
+  .scope-grid > div{flex:1;}
+  ul.included, ul.excluded{list-style:none;}
+  ul.included li, ul.excluded li{padding:1.8mm 0 1.8mm 5.5mm;position:relative;font-size:8.5pt;border-bottom:0.5px solid var(--line);}
+  ul.included li::before{content:"";position:absolute;left:0;top:4mm;width:3.5mm;height:2mm;border-left:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(-45deg);}
+  ul.excluded li::before{content:"";position:absolute;left:0;top:4mm;width:3.5mm;height:0.7px;background:var(--muted);}
+
+  .num-row{display:flex;gap:6mm;margin:3mm 0 4mm;}
+  .num-box{flex:1;border:0.7px solid var(--gold-soft);background:var(--panel);padding:4mm;position:relative;}
+  .num-box .big{font-size:20pt;font-weight:200;color:var(--gold-deep);letter-spacing:0.5px;line-height:1;margin-bottom:1.5mm;}
+  .num-box .desc{font-size:8pt;color:var(--muted);line-height:1.45;}
+  .num-box .desc b{color:var(--ink);font-weight:400;}
+
+  .guarantee{border:1px solid var(--gold);background:var(--panel);padding:5mm 6mm;margin:4mm 0;}
+  .guarantee .label{font-size:7.5pt;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);font-weight:400;margin-bottom:2.5mm;display:block;}
+  .guarantee p{font-size:9.5pt;color:var(--ink);margin:0;}
+  .guarantee .highlight{color:var(--gold-deep);font-weight:500;}
+
+  .timeline{margin:3mm 0 3mm;}
+  .timeline .item{display:flex;gap:4mm;margin-bottom:3mm;}
+  .timeline .item:last-child{margin-bottom:0;}
+  .timeline .item .phase{width:40mm;flex-shrink:0;}
+  .timeline .item .phase h4{font-size:8.5pt;color:var(--gold-deep);font-weight:400;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5mm;}
+  .timeline .item .phase .week{font-size:7pt;color:var(--muted);}
+  .timeline .item .content{flex:1;}
+  .timeline .item .content p{font-size:8.5pt;margin:0 0 0.5mm 0;}
+
+  .cta{border:0.7px solid var(--gold);background:var(--panel);padding:5mm 6mm;margin-top:3mm;}
+  .cta h4{color:var(--gold-deep);font-size:9pt;letter-spacing:1px;text-transform:uppercase;margin-bottom:2mm;font-weight:400;}
+  .cta p{font-size:8.5pt;color:#2b2823;line-height:1.6;}
+  .sig{display:flex;gap:8mm;margin-top:6mm;padding-top:4mm;border-top:0.6px solid var(--line);}
+  .sig .field{flex:1;font-size:8pt;color:var(--muted);line-height:2.2;}
+  .contact-box{margin-top:4mm;padding-top:3mm;border-top:0.6px solid var(--line);font-size:7.5pt;color:var(--muted);}
+
+  .footer-abs{
+    position:absolute;
+    bottom:9mm;left:22mm;right:22mm;
+    border-top:0.6px solid var(--line);
+    padding-top:2.5mm;
+    display:flex;justify-content:space-between;
+    font-size:7.5pt;color:var(--muted);
+    font-weight:300;
+  }
+  .footer-abs .pn{color:var(--gold-deep);font-weight:400;}
+</style>
+</head>
+<body>
+
+<!-- ============ 01 CAPA ============ -->
+<div class="page cover">
+  <div class="frame"></div>
+  <div class="top">
+    <div class="brand">ALTARS<span class="dot">·</span></div>
+    <div class="doc-tag">
+      Parceria de Crescimento<br>
+      crossmalen × Altars<br>
+      Setembro 2026
+    </div>
+  </div>
+  <div class="center">
+    <div class="kicker">PARCERIA DE CRESCIMENTO · MÉTODO AURORA</div>
+    <h1>Crescer a crossmalen com presença, vendas e organização.</h1>
+    <div class="sub">
+      Quatro pilares de actuação clara, com garantia de resultados: se não houver absolutamente nenhum resultado pela nossa causa, o mês seguinte é gratuito.
+    </div>
+    <div class="rule-gold"></div>
+  </div>
+  <div class="seal">
+    <div class="inner">
+      <div class="a">ALTARS</div>
+      <div class="b">AURORA</div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="col">
+      <b>Preparado para:</b> Sr. Leonel<br>
+      <b>Marca:</b> crossmalen (Streetwear)<br>
+      <b>Âmbito:</b> Parceria de crescimento contínua
+    </div>
+    <div class="col" style="text-align:right">
+      <b>Emitido por:</b> Altars (Ellocene, Lda.)<br>
+      <b>Modelo:</b> Subscrição mensal<br>
+      <b>Data:</b> 25 de Setembro de 2026
+    </div>
+  </div>
+</div>
+
+<!-- ============ 02 OS QUATRO PILARES ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">01</span>
+    <h2>Os Quatro Pilares</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="lead">
+    A nossa parceria estrutura-se em quatro áreas bem definidas:
+  </p>
+  <div class="flow">
+    <div class="node">
+      <div class="dot"></div>
+      <div class="st">Pilar 1</div>
+      <h3 style="font-size:9.5pt;margin-bottom:1.5mm">Marketing &amp; Vendas</h3>
+      <div class="ds">Blimari, presença digital, WhatsApp com atendimento automático e venda activa.</div>
+    </div>
+    <div class="node">
+      <div class="dot"></div>
+      <div class="st">Pilar 2</div>
+      <h3 style="font-size:9.5pt;margin-bottom:1.5mm">Operações &amp; Rotinas</h3>
+      <div class="ds">Organização de encomendas, produção e actividades internas.</div>
+    </div>
+    <div class="node">
+      <div class="dot"></div>
+      <div class="st">Pilar 3</div>
+      <h3 style="font-size:9.5pt;margin-bottom:1.5mm">Leitura de Negócio</h3>
+      <div class="ds">Dados, leitura e relatórios mensais.</div>
+    </div>
+    <div class="node">
+      <div class="dot"></div>
+      <div class="st">Pilar 4</div>
+      <h3 style="font-size:9.5pt;margin-bottom:1.5mm">Demanda do Fundador</h3>
+      <div class="ds">Suporte sob medida conforme as necessidades surgem.</div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:10mm">
+    <span class="blk-label">O que fazemos</span>
+    <p>• Planear, publicar e analisar conteúdos<br>
+    • Configurar e operar o WhatsApp automático<br>
+    • Realizar outreach e conversão de vendas<br>
+    • Gravar conteúdo institucional (one-offs)<br>
+    • Organizar encomendas e produção<br>
+    • Responder ao cliente (WhatsApp, potencial DM)<br>
+    • Relatórios e leitura mensal<br>
+    • Apoio sob medida conforme necessário</p>
+  </div>
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">2</span></div>
+</div>
+
+<!-- ============ 03 PILAR 1: MARKETING & VENDAS ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">02 · Pilar 1</span>
+    <h2>Marketing &amp; Vendas</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="lead">
+    Todo o ciclo de presença digital, gestão de conteúdo e <b>vendas activas</b> passa a ser gerido na plataforma <b>Blimari</b>.
+  </p>
+  <div class="steps">
+    <div class="step">
+      <div class="n">1</div>
+      <div class="tx">
+        <h4>Estratégia e calendário editorial</h4>
+        <p>Posicionamento, tom de voz e planeamento contínuo de conteúdos no <b>Instagram</b> (canal principal) e <b>TikTok</b> (alcançar novas audiências).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <div class="tx">
+        <h4>Atendimento automático no WhatsApp</h4>
+        <p>Configuração de agente automático que responde perguntas, guia o cliente na escolha de peças e <b>faz o pedido directamente</b>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <div class="tx">
+        <h4>Outreach e venda activa</h4>
+        <p>Agentes que não apenas respondem — que <b>proactivamente contactam prospects</b> e convertem em pedidos.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">4</div>
+      <div class="tx">
+        <h4>Conteúdo visual (one-offs)</h4>
+        <p><b>Gravações de vídeo e fotografia</b> limitadas a momentos específicos: vídeos institucionais, lançamento de colecção. Não são sessões recorrentes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">5</div>
+      <div class="tx">
+        <h4>Atendimento ao cliente</h4>
+        <p>Atendimento primário via <b>WhatsApp</b>. Se necessário, expandimos para Direct Messages no Instagram.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">3</span></div>
+</div>
+
+<!-- ============ 04 PILAR 2, 3, 4 ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">03</span>
+    <h2>Os Outros Pilares</h2>
+    <div class="rule"></div>
+  </div>
+
+  <h3>Pilar 2 — Operações & Rotinas</h3>
+  <p>Organizar o que hoje vive na cabeça das pessoas. Encomendas, produção, rotinas diárias e capacitação da equipa.</p>
+
+  <h3>Pilar 3 — Leitura de Negócio</h3>
+  <p>Dados que ajudam a decidir. Métricas de presença, métricas de negócio, relatório mensal com três decisões recomendadas e reunião mensal com o Sr. Leonel.</p>
+
+  <h3>Pilar 4 — Demandas do Fundador</h3>
+  <p>A medida que a crossmalen cresce, novas necessidades vão surgir. Apoiamos parcerias de produção, distribuição ou o que for necessário. Não há catálogo fechado — há presença e disponibilidade.</p>
+
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">4</span></div>
+</div>
+
+<!-- ============ 05 GARANTIA DE RESULTADOS ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">04</span>
+    <h2>Garantia de Resultados</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="lead">
+    Sabemos que parcerias de crescimento exigem confiança. Por isso, assumimos risco junto com a crossmalen.
+  </p>
+  <div class="guarantee">
+    <span class="label">Compromisso de Resultados</span>
+    <p>
+      Se um determinado mês <b>não gerar absolutamente nenhum resultado</b> pela nossa causa,
+      o <span class="highlight">mês seguinte é gratuito.</span>
+    </p>
+  </div>
+  <p>
+    Esta garantia aplica-se quando não há qualquer resultado tangível (nenhum pedido, nenhum cliente, nenhuma interação gerada pela parceria) por falha da Altars. Não se aplica a factores externos ou a resultados parciais.
+  </p>
+  <div class="panel">
+    <span class="blk-label">Como funciona</span>
+    <p>• Definimos o que é resultado na fase inicial<br>
+    • Se nenhum resultado e causa nossa — mês seguinte gratuito<br>
+    • Não se aplica a factores externos ou decisões do fundador<br>
+    • Validada em reunião mensal</p>
+  </div>
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">5</span></div>
+</div>
+
+<!-- ============ 06 CRONOGRAMA AURORA ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">05</span>
+    <h2>Cronograma de Implementação</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="lead">
+    O trabalho segue o Método Aurora: um pilar de cada vez, com fase de teste e medição de resultados antes de avançar.
+  </p>
+
+  <div class="timeline">
+    <div class="item">
+      <div class="phase">
+        <h4>Escuta</h4>
+        <div class="week">Semana 1</div>
+      </div>
+      <div class="content">
+        <p><strong>Entrevistas individuais</strong> com a equipa</p>
+        <p><strong>Observação do trabalho real</strong> — percebemos como a equipa trabalha hoje</p>
+        <p><strong>Desenho do processo</strong> em conjunto com a equipa</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="phase">
+        <h4>Desenho</h4>
+        <div class="week">Semana 2</div>
+      </div>
+      <div class="content">
+        <p><strong>Sessão de trabalho</strong> para definir o processo comercial-alvo</p>
+        <p><strong>Construção da ferramenta</strong> à medida, simples e adaptada</p>
+        <p><strong>Migração de dados</strong> existentes para o novo sistema</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="phase">
+        <h4>Formação</h4>
+        <div class="week">Semana 3</div>
+      </div>
+      <div class="content">
+        <p><strong>Formação no posto de trabalho</strong> com a ferramenta real e dados reais</p>
+        <p><strong>Pequenos rituais diários</strong> criam o hábito de registar e acompanhar</p>
+        <p><strong>Definição de responsáveis</strong> por cada etapa</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="phase">
+        <h4>Arranque</h4>
+        <div class="week">Semana 4</div>
+      </div>
+      <div class="content">
+        <p><strong>Acompanhamento diário</strong> e semanal nas primeiras semanas</p>
+        <p><strong>Ajustes</strong> com base no uso real</p>
+        <p><strong>Medidas de uso</strong> e feedback contínuo</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <span class="blk-label">Após a semana 4</span>
+    <p>Ciclo mensal de leitura e optimização. Cada mês inclui relatório, reunião e ajustes baseados no que funcionou e no que não funcionou.</p>
+  </div>
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">6</span></div>
+</div>
+
+<!-- ============ 07 ÂMBITO + INVESTIMENTO ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">06</span>
+    <h2>Âmbito &amp; Investimento</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="scope-grid">
+    <div>
+      <h3>Incluído</h3>
+      <ul class="included">
+        <li>Estratégia, calendário e publicação (Instagram + TikTok)</li>
+        <li>Atendimento automático no WhatsApp com capacidade de venda</li>
+        <li>Outreach e conversão de pedidos</li>
+        <li>Gravação de vídeos e fotografia (one-offs institucionais)</li>
+        <li>Organização de encomendas e rotinas internas</li>
+        <li>Capacitação da equipa</li>
+        <li>Relatório e reunião mensal</li>
+        <li>Apoio sob demanda (Pilar 4)</li>
+        <li><strong>Garantia de resultados</strong> — mês gratuito se necessário</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Não Incluído</h3>
+      <ul class="excluded">
+        <li>Sessões de fotografia profissional recorrentes</li>
+        <li>Investimento em anúncios pagos (budget de tráfego)</li>
+        <li>Contratação de modelos, estúdios ou terceiros</li>
+        <li>Produção física das peças e respectivos custos</li>
+        <li>Custos de terceiros (fornecedores, entregas, licenças)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="num-row" style="margin-top:6mm">
+    <div class="num-box" style="flex:1.2">
+      <div class="big">50.000 <span style="font-size:12pt;font-weight:300">Kz / mês</span></div>
+      <div class="desc">
+        <b>Subscrição da Parceria</b><br>
+        Acesso aos quatro pilares, garantia de resultados e equipa completa da Altars.
+      </div>
+    </div>
+    <div class="num-box">
+      <div class="big">0 <span style="font-size:12pt;font-weight:300">Kz</span></div>
+      <div class="desc">
+        <b>Taxa de entrada</b><br>
+        Sem setup. A parceria começa no terreno.
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <span class="blk-label">Condições</span>
+    <p>• Facturação mensal, no início de cada período<br>
+    • Sem fidelização forçada — renova-se mês a mês<br>
+    • Proposta válida por 15 dias úteis<br>
+    • Garantias activadas após definição de objectivos na fase inicial</p>
+  </div>
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">7</span></div>
+</div>
+
+<!-- ============ 08 PRÓXIMOS PASSOS ============ -->
+<div class="page">
+  <div class="section-head">
+    <span class="idx">07</span>
+    <h2>Próximos Passos</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="lead">
+    O arranque da parceria segue o Método Aurora, semana a semana:
+  </p>
+  <div class="steps">
+    <div class="step">
+      <div class="n">1</div>
+      <div class="tx">
+        <h4>Validação</h4>
+        <p>Revisão conjunta e assinatura do acordo de parceria.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <div class="tx">
+        <h4>Semana 1 — Escuta</h4>
+        <p>Entrevistas com a equipa e desenho do processo conjuntamente.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <div class="tx">
+        <h4>Semana 2 — Construção</h4>
+        <p>Construção da ferramenta e migração de dados existentes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">4</div>
+      <div class="tx">
+        <h4>Semana 3 — Formação</h4>
+        <p>Formação prática no posto de trabalho com dados reais.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">5</div>
+      <div class="tx">
+        <h4>Semana 4 — Operacional</h4>
+        <p>Entrada em operação com acompanhamento diário e painel.</p>
+      </div>
+    </div>
+  </div>
+  <div class="cta">
+    <h4>Próxima Acção</h4>
+    <p>Agendar a reunião de validação. A partir daí, a Altars assume o compromisso: <b>crescer junto</b>.</p>
+    <p style="margin-bottom:0">Altars — novos modos de trabalhar, ao lado de quem constrói.</p>
+  </div>
+  <div class="sig">
+    <div class="field">Pela Altars (Ellocene, Lda.) — <b>____________</b></div>
+    <div class="field">Pela crossmalen — <b>Sr. Leonel</b></div>
+  </div>
+  <div class="contact-box">
+    <p><b>Contacto Altars:</b> Luanda, Angola · Parceria de Crescimento v1.2 · 25 de Setembro de 2026</p>
+  </div>
+  <div class="footer-abs"><span>Altars · Parceria de Crescimento · crossmalen</span><span class="pn">8</span></div>
+</div>
+
+</body>
+</html>

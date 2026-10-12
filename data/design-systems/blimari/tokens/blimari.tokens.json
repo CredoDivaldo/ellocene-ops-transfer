@@ -1,0 +1,125 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "name": "Blimari Design Tokens",
+  "version": "1.0.0",
+  "updated": "2026-08-07",
+  "brand": {
+    "name": "Blimari",
+    "code": "BLI",
+    "holding": "Ellocene",
+    "tagline": "Blimari faz com que qualquer pessoa consiga encontrar o seu negócio.",
+    "taglineInstitutional": "BLIMARI · FAZEMOS COM QUE QUALQUER PESSOA CONSIGA ENCONTRAR O SEU NEGÓCIO.",
+    "logoPrimary": "signature",
+    "thesis": "Existir fisicamente já não é suficiente. Hoje, um negócio só existe verdadeiramente quando pode ser encontrado."
+  },
+  "color": {
+    "brand": {
+      "orange": { "value": "#FF6A00", "type": "color", "description": "Acento único de marca / pin / CTA" },
+      "cream": { "value": "#FAF6F1", "type": "color", "description": "Fundo principal" },
+      "charcoal": { "value": "#161616", "type": "color", "description": "Texto e logo" },
+      "grey": { "value": "#6B6B6B", "type": "color", "description": "Texto secundário" }
+    },
+    "extended": {
+      "creamDeep": { "value": "#F0EBE3", "type": "color" },
+      "creamDarker": { "value": "#E4DDD2", "type": "color" },
+      "charcoalSoft": { "value": "#2A2A2A", "type": "color" },
+      "charcoalMid": { "value": "#3D3D3D", "type": "color" },
+      "greyLight": { "value": "#9A9A9A", "type": "color" },
+      "greyLine": { "value": "#D9D4CC", "type": "color" },
+      "white": { "value": "#FFFFFF", "type": "color" },
+      "orangeHover": { "value": "#E55F00", "type": "color" },
+      "orangeSoft": { "value": "#FF8A33", "type": "color" },
+      "orangeMuted": { "value": "#C45F24", "type": "color" },
+      "orangeWash": { "value": "#FFE8D6", "type": "color" }
+    },
+    "illustration": {
+      "bg": { "value": "#FAF6F1", "type": "color" },
+      "bgAlt": { "value": "#F0EBE3", "type": "color" },
+      "ink": { "value": "#161616", "type": "color" },
+      "inkSoft": { "value": "#2A2A2A", "type": "color" },
+      "mid": { "value": "#6B6B6B", "type": "color" },
+      "midSoft": { "value": "#9A9A9A", "type": "color" },
+      "light": { "value": "#D9D4CC", "type": "color" },
+      "lightSoft": { "value": "#E4DDD2", "type": "color" },
+      "skinDeep": { "value": "#3A2A24", "type": "color" },
+      "skinDark": { "value": "#5C4033", "type": "color" },
+      "skinMid": { "value": "#6B4F3A", "type": "color" },
+      "skinWarm": { "value": "#A67C52", "type": "color" },
+      "skinLight": { "value": "#C4A574", "type": "color" },
+      "accent": { "value": "#FF6A00", "type": "color" },
+      "accentMuted": { "value": "#C45F24", "type": "color" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": { "value": "Geist, Inter, SF Pro Text, system-ui, sans-serif", "type": "fontFamilies" },
+      "body": { "value": "Geist, Inter, SF Pro Text, system-ui, sans-serif", "type": "fontFamilies" },
+      "mono": { "value": "Geist Mono, SF Mono, ui-monospace, monospace", "type": "fontFamilies" },
+      "logo": { "value": "Blimari Signature (custom)", "type": "fontFamilies", "description": "Wordmark custom — não substituir" }
+    },
+    "fontWeight": {
+      "regular": { "value": 400, "type": "fontWeights" },
+      "medium": { "value": 500, "type": "fontWeights" },
+      "semibold": { "value": 600, "type": "fontWeights" }
+    },
+    "scale": {
+      "displayXl": { "fontSize": "4.5rem", "lineHeight": 1.05, "fontWeight": 500, "letterSpacing": "-0.03em" },
+      "displayLg": { "fontSize": "3rem", "lineHeight": 1.1, "fontWeight": 500, "letterSpacing": "-0.025em" },
+      "headingLg": { "fontSize": "2rem", "lineHeight": 1.2, "fontWeight": 500, "letterSpacing": "-0.02em" },
+      "headingMd": { "fontSize": "1.5rem", "lineHeight": 1.25, "fontWeight": 500, "letterSpacing": "-0.015em" },
+      "headingSm": { "fontSize": "1.25rem", "lineHeight": 1.3, "fontWeight": 500, "letterSpacing": "-0.01em" },
+      "bodyLg": { "fontSize": "1.125rem", "lineHeight": 1.55, "fontWeight": 400, "letterSpacing": "-0.01em" },
+      "bodyMd": { "fontSize": "1rem", "lineHeight": 1.6, "fontWeight": 400, "letterSpacing": "0" },
+      "bodySm": { "fontSize": "0.875rem", "lineHeight": 1.5, "fontWeight": 400, "letterSpacing": "0" },
+      "label": { "fontSize": "0.75rem", "lineHeight": 1.2, "fontWeight": 500, "letterSpacing": "0.12em", "textTransform": "uppercase" },
+      "quote": { "fontSize": "1.5rem", "lineHeight": 1.35, "fontWeight": 500, "letterSpacing": "-0.015em" }
+    }
+  },
+  "space": {
+    "1": { "value": "4px", "type": "spacing" },
+    "2": { "value": "8px", "type": "spacing" },
+    "3": { "value": "12px", "type": "spacing" },
+    "4": { "value": "16px", "type": "spacing" },
+    "5": { "value": "24px", "type": "spacing" },
+    "6": { "value": "32px", "type": "spacing" },
+    "7": { "value": "48px", "type": "spacing" },
+    "8": { "value": "64px", "type": "spacing" },
+    "9": { "value": "96px", "type": "spacing" },
+    "10": { "value": "128px", "type": "spacing" }
+  },
+  "radius": {
+    "none": { "value": "0px", "type": "borderRadius" },
+    "sm": { "value": "4px", "type": "borderRadius" },
+    "md": { "value": "8px", "type": "borderRadius" },
+    "lg": { "value": "12px", "type": "borderRadius" },
+    "xl": { "value": "16px", "type": "borderRadius" },
+    "pill": { "value": "999px", "type": "borderRadius" }
+  },
+  "stroke": {
+    "icon": { "value": "1.75px", "type": "borderWidth" },
+    "hairline": { "value": "1px", "type": "borderWidth" },
+    "accent": { "value": "3px", "type": "borderWidth" }
+  },
+  "grid": {
+    "a4": {
+      "page": "210mm x 297mm",
+      "margin": "18mm",
+      "columns": 12,
+      "gutter": "5mm"
+    }
+  },
+  "iconography": {
+    "families": ["localizacao", "conexao", "precisao", "caminhos"],
+    "sizes": [16, 24, 32, 48]
+  },
+  "illustration": {
+    "style": "editorial-flat-minimal",
+    "people": "african-black-modern",
+    "paletteMode": "monochrome-muted-with-single-accent",
+    "maxAccentPerComposition": 1
+  },
+  "contact": {
+    "email": "comercial@blimari.app",
+    "phone": "+244 927 805 792"
+  }
+}

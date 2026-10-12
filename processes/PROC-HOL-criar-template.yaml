@@ -1,0 +1,61 @@
+# Process Spec — Criação e Activação de Novos Templates de Documentos
+# ID: PROC-HOL-criar-template
+# Versão: 1.0.0
+# Estado: activo
+
+meta:
+  nome: "Criação e Activação de Novo Template de Documento"
+  dominio: "Operações e Documentação"
+  dono_humano: credo
+  dono_agente: docs
+  trigger: "Necessidade de documento nunca antes gerado ou nova empresa adicionada ao grupo"
+  criterio_feito: "Template testado, auditado com audit-tokens.sh exit 0, registado no Fibery e aprovado pelo Credo"
+
+passos:
+  1_classificacao_p0:
+    actor: guardiao
+    descricao: "Classificar sem perguntar ao utilizador: destinatário (cliente vs interno), emitente (empresa), área documental e se tem valor legal"
+    ferramenta: "leitura de contexto"
+    criterio_feito: "Eixos preenchidos sem interromper o utilizador"
+
+  2_elicitacao_p1_p5:
+    actor: guardiao
+    descricao: "Fazer no máximo 5 perguntas fechadas ao Credo se faltarem dados de negócio/escopo. Se faltar dado após as 5 perguntas, RECUSAR e listar falhas."
+    ferramenta: "chat interactivo"
+    criterio_feito: "Respostas obtidas ou recusa explícita sem inventar prosa"
+
+  3_verificacao_design_system:
+    actor: docs
+    descricao: "Verificar se a empresa tem tokens em data/design-systems/. Se não tiver, usar Holding por defeito e abrir entrada no UNKNOWNS-REGISTER."
+    ferramenta: "leitura de data/design-systems/"
+    criterio_feito: "Tokens identificados"
+
+  4_construcao_template:
+    actor: docs
+    descricao: "Criar HTML do template em ellocene-ops/templates/ e criar o respectivo spec YAML com inventário fechado de placeholders."
+    ferramenta: "escrita de ficheiro"
+    criterio_feito: "HTML + YAML presentes no disco"
+
+  5_auditoria_automatica:
+    actor: docs
+    descricao: "Executar tools/audit-tokens.sh sobre o novo template para garantir que todas as variáveis CSS existem nos tokens da empresa."
+    ferramenta: "bash audit-tokens.sh"
+    criterio_feito: "audit-tokens.sh sai com exit 0"
+
+  6_revisao_legal:
+    actor: legal
+    descricao: "Se o documento tiver valor contratual/jurídico, o @legal faz revisão das cláusulas antes de qualquer envio."
+    ferramenta: "tarefa review-documento"
+    criterio_feito: "Parecer do @legal emitido ou passo dispensado se for proposta/relatório simples"
+
+  7_registo_fibery:
+    actor: guardiao
+    descricao: "Criar entidade em Ellocene/Document com Tipo de Documento = Template, estado Rascunho, ligado à EmpresaFilha."
+    ferramenta: "Fibery MCP create_entities"
+    criterio_feito: "Documento existe no Fibery com ID"
+
+  8_gate_aprovacao:
+    actor: credo
+    descricao: "Credo revê o PDF de exemplo. Só após aprovação humana o documento passa a Activo."
+    ferramenta: "gate humano"
+    criterio_feito: "Aprovado por + Data preenchidos no Fibery"

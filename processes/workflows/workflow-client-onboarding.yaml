@@ -1,0 +1,127 @@
+# Workflow de Onboarding de Cliente
+# ID: PROC-001-CLIENT-ONBOARDING
+# Versão: 1.0
+
+## Objectivo
+Automatizar a entrada de novos clientes no ecossistema Altars/Ellocene, desde a criação inicial até à entrega da proposta e contrato, com máximo rigor e mínimo input manual.
+
+## Trigger
+Comando: `@guardiao *nova-proposta {cliente}`
+
+## Input Mínimo Necessário
+- Nome do cliente
+- Área/negócio do cliente
+- Tipo de serviço/proposta
+- Prazo (se aplicável)
+- Nome do responsável comercial (se não for Esteves)
+
+## Workflow Automático
+
+### Fase 1: Preparação (Agentes @guardiao + @planos)
+1. Verificar se cliente já existe no Fibery (Ellocene/Client)
+   - Se existir: reutilizar ID existente
+   - Se não existir: criar novo cliente no Fibery
+     - Campos obrigatórios: Nome, Domínio/Indústria, Email, Website (se houver)
+     - Status: Lead → Contactado
+
+2. Criar Projecto no Fibery (Ellocene/Project)
+   - Nome: [Cliente] - [Tipo de Serviço]
+   - Cliente: [link ao cliente criado/ligado]
+   - Status: Em Aberto / Em Discussão
+   - Início: data actual
+   - Prazo: conforme input
+
+3. Criar pasta no Google Drive
+   - Estrutura:
+     ```
+     ELLOCENE/06-Empresas-Filhas/Altars/04-Clientes/{Cliente}/
+     ├── 01-Projecto/
+     ├── 02-Comunicacao/
+     ├── 03-Rascunhos/
+     ├── 04-Entregaveis/
+     ├── 05-Contratos/
+     └── 06-Facturacao/
+     ```
+   - Link para o Projecto no Fibery (campo "Drive Link")
+
+### Fase 2: Criação de Documentos (Agentes @docs + @legal)
+1. Proposta Comercial
+   - Template: `proposta-comercial-template.html` (Altars Identity)
+   - Regras automáticas:
+     - Identidade visual Altars (off-white, dourado, sans-serif fina)
+     - Sem detalhes técnicos excessivos (focar em valor para cliente)
+     - Sem menções internas (Credo, CTO, Belmiro, etc.)
+     - Sem atribuições nominais (usar "Altars", "Parceiro Comercial")
+     - Máximo 10 páginas, linguagem comercial
+   - Output: HTML + PDF em `04-Entregaveis/`
+
+2. Contrato (se aplicável)
+   - Template: `contrato-scp-template.html` (formatação legal padrão)
+   - Regras automáticas:
+     - Formatação jurídica formal (Times New Roman, branco, preto)
+     - Dados legais da Ellocene preenchidos automaticamente:
+       - Nome: ELLOCENE - COMÉRCIO E SERVIÇOS, LDA.
+       - Matrícula: 45513-26/260921
+       - NIF: 5003601463
+       - Sede: Luanda, Viana, bairro Vila, casa 39 Rc
+       - Representante: CREDO DIVALDO PAULO LOPES
+     - Cláusulas padrão de SCP para parceria comercial
+   - Output: HTML + PDF em `05-Contratos/`
+
+3. Documentos da empresa (se necessário)
+   - Copiar da pasta master: Ellocene/Documentos-Legais/
+   - Incluir: matrícula, certidão, estatutos, factura
+
+### Fase 3: Finalização (Agente @guardiao)
+1. Linkar Fibery ↔ Drive
+   - Fibery Project → Link para pasta Drive
+   - Fibery Client → Link para pasta Drive
+
+2. Actualizar status no Fibery
+   - Cliente: Contactado → Em Negociação
+   - Projecto: Em Aberto → Em Elaboração
+
+3. Notificar responsável comercial
+   - Resumo do que foi criado
+   - Links para documentos
+   - Próximos passos
+
+## Templates
+
+### template-proposta.html
+- Localização: `ellocene-ops/templates/proposta-comercial-template.html`
+- Identidade Altars embutida
+- Secções genéricas parametrizáveis
+
+### template-contrato-scp.html
+- Localização: `ellocene-ops/templates/contrato-scp-template.html`
+- Dados da Ellocene pré-preenchidos
+- Marcadores para personalização
+
+## Regras de Ouro
+
+1. **Propostas para cliente:**
+   - Linguagem comercial, nunca técnica
+   - Focar em valor de negócio
+   - Máximo 10 páginas
+   - Sem referências a equipa interna
+
+2. **Contratos para cliente:**
+   - Formatação legal padrão (sem branding)
+   - Dados da empresa sempre actualizados
+   - Cláusulas padrão, apenas personalizar partes
+
+3. **Fibery:**
+   - TODOS os documentos nascem aqui
+   - Link Drive é obrigatório
+   - Status actualizados automaticamente
+
+## Saídas Esperadas
+- [ ] Cliente criado no Fibery
+- [ ] Projecto criado no Fibery
+- [ ] Pasta Drive criada com estrutura completa
+- [ ] Proposta HTML + PDF gerada
+- [ ] Contrato HTML + PDF gerada (se aplicável)
+- [ ] Links linkados entre Fibery e Drive
+- [ ] Status actualizados
+- [ ] Responsável notificado

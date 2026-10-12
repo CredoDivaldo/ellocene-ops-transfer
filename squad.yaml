@@ -1,0 +1,199 @@
+name: ellocene-ops
+version: 1.0.0
+description: 'Cérebro operacional e de conselho da holding Ellocene. Dua camadas: (1) Agentes operacionais (governança, actas,
+  planos, registo, portfólio, KPIs, relatórios, docs, legal) que automatizam processos ponta-a-ponta sobre as bases Ellocene/*
+  do Fibery; (2) Conselho de Administração (CEO, CFO, CTO, CMO, CHRO, CRO) com personalidade de C-level Silicon Valley/YC,
+  que pesquisa conhecimento dinamicamente em fontes credíveis (livros, legislação, mercados) para dar conselho de leverage
+  e apoiar decisões. Tudo ligado por fluxos cross-agents com handoffs e gates humanos.'
+author: CredoDivaldo
+license: MIT
+slashPrefix: ellocene-ops
+aiox:
+  minVersion: 2.1.0
+  type: squad
+components:
+  tasks:
+  - status.md
+  - routing.md
+  - fluxo-completo-reuniao.md
+  - fluxo-completo-relatorio.md
+  - cockpit.md
+  - handoffs-pendentes.md
+  - redigir-contrato.md
+  - minuta-pacto-social.md
+  - redigir-scp.md
+  - minuta-deliberacao.md
+  - registos-comerciais.md
+  - analisar-risco-legal.md
+  - pesquisar-legislacao.md
+  - review-documento.md
+  - registar-decisao.md
+  - acta-socios.md
+  - auditar-fibery.md
+  - validar-relacoes.md
+  - listar-orfaos.md
+  - conformidade-socios.md
+  - gerar-acta.md
+  - gerar-acta-socios.md
+  - gerar-acta-projecto.md
+  - listar-tarefas-acta.md
+  - publicar-acta.md
+  - listar-actas-em-falta.md
+  - gerar-planos-semana.md
+  - boot-dia.md
+  - checkpoint.md
+  - checkout.md
+  - carryover.md
+  - tarefas-hoje.md
+  - reunioes-semana.md
+  - registar.md
+  - registar-whatsapp.md
+  - ver-registo-dia.md
+  - ver-registo-projecto.md
+  - sinalizar-tarefa.md
+  - sinalizar-desvio.md
+  - nova-filha.md
+  - estado-portfolio.md
+  - avaliar-criterios.md
+  - listar-filhas.md
+  - check-regra-tres.md
+  - definir-kpi.md
+  - medir-kpi.md
+  - kpis-em-risco.md
+  - ver-kpi.md
+  - importar-metas-plano.md
+  - listar-kpis.md
+  - relatorio-holding.md
+  - relatorio-filha.md
+  - relatorio-investidor.md
+  - listar-fontes.md
+  - state-of-the-union.md
+  - gerar-documento.md
+  - gerar-relatorio.md
+  - gerar-dossie.md
+  - gerar-proposta.md
+  - gerar-sop.md
+  - detectar-processos.md
+  - desenhar-processo.md
+  - editar-processo.md
+  - documentar-processo.md
+  - validar-processo.md
+  - listar-processos.md
+  - promover-processo.md
+  - auditar-processo.md
+  - gerar-docx.md
+  - listar-templates.md
+  - aconselhar.md
+  - estrategia.md
+  - decidir-portfolio.md
+  - priorizar.md
+  - north-star.md
+  - preparar-pitch.md
+  - aconselhar-financeiro.md
+  - analisar-unit-economics.md
+  - estrutura-capital.md
+  - planeamento-fiscal.md
+  - orcamento-grupo.md
+  - metricas-saude.md
+  - aconselhar-tecnico.md
+  - arquitectura.md
+  - build-vs-buy.md
+  - revisar-stack.md
+  - roadmap-tecnico.md
+  - seguranca-ia.md
+  - aconselhar-marketing.md
+  - posicionamento.md
+  - estrategia-canais.md
+  - growth-plan.md
+  - brand-holding.md
+  - avaliar-campanha.md
+  - aconselhar-pessoas.md
+  - contratar.md
+  - equity-pool.md
+  - cultura-holding.md
+  - onboarding.md
+  - estrutura-equipa.md
+  - aconselhar-receita.md
+  - estrategia-vendas.md
+  - pricing.md
+  - pipelines.md
+  - expansao-conta.md
+  - metas-receita.md
+  - fluxo-conselho-decisao.md
+  - fluxo-contrato.md
+  - fluxo-nova-filha.md
+  - fluxo-reporting-socios.md
+  - fluxo-planeamento-semanal.md
+  - fluxo-aprovacao-investidor.md
+  agents:
+  - guardiao.md
+  - legal.md
+  - governanca.md
+  - actas.md
+  - planos.md
+  - registo.md
+  - portfolio.md
+  - kpis.md
+  - relatorios.md
+  - docs.md
+  - processos.md
+  - ceo.md
+  - cfo.md
+  - cto.md
+  - cmo.md
+  - chro.md
+  - cro.md
+  workflows: []
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+  data:
+  - biblioteca-conhecimento.yaml
+  - identidades-empresas.yaml
+  - nomenclatura-padroes.yaml
+  - processo-schema.yaml
+config:
+  extends: extend
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+dependencies:
+  node: []
+  python: []
+  squads: []
+tags:
+- custom
+blueprint:
+  source:
+  - /Users/user/Library/CloudStorage/GoogleDrive-blimariapp@gmail.com/My Drive/ELLOCENE/README.md
+  - /Users/user/Library/CloudStorage/GoogleDrive-blimariapp@gmail.com/My Drive/ELLOCENE/01-Visao-Estrategia/Holding/Visao-Holding-Ellocene-v1.0.md
+  - schema_detailed Fibery (todas as bases Ellocene/*)
+  - squads/ops-md/squad.yaml + .designs/ops-md-squad-design.yaml (referência de padrão)
+  created_at: '2026-08-17'
+  confidence: 0.88
+integrations:
+- name: Fibery
+  type: MCP
+  databases:
+  - Ellocene/EmpresaFilha
+  - Ellocene/Client
+  - Ellocene/Project
+  - Ellocene/Task
+  - Ellocene/Meeting
+  - Ellocene/Document
+  - Ellocene/Financeiro
+  - Ellocene/KPI
+  - Ellocene/MarketingEditorial
+  - Ellocene/Socio
+- name: Google Drive (pasta ELLOCENE)
+  type: filesystem-local
+  path: /Users/user/Library/CloudStorage/GoogleDrive-blimariapp@gmail.com/My Drive/ELLOCENE
+- name: WeasyPrint
+  type: pip
+- name: Pandoc
+  type: CLI
+- name: python-docx
+  type: pip
+- name: Biblioteca de Conhecimento
+  type: filesystem + pesquisa dinâmica

@@ -1,0 +1,12 @@
+{
+  "name": "ellocene-ops",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Squad operacional e de conselho da holding Ellocene para Codex.",
+  "scripts": {
+    "validate:codex-agents": "node scripts/validate-codex-agents.mjs",
+    "handoff": "node scripts/handoff.js",
+    "handoff:list": "node scripts/handoff.js list",
+    "handoff:doctor": "node scripts/handoff.js doctor"
+  }
+}

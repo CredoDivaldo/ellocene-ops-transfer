@@ -1,0 +1,4 @@
+# Perfis locais do squad Ellocene. Não altera as definições globais do Codex.
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 3

@@ -1,0 +1,135 @@
+/**
+ * Tivra Icons v1.0
+ * ─────────────────
+ * Pack canónico de ícones de produto · baseado em Iconoir 7.x
+ * Fonte upstream: https://iconoir.com/  ·  Licença: MIT
+ *
+ * Como usar:
+ *   <i class="tiv-icon tiv-icon--bell" aria-hidden="true"></i>
+ *   <i class="tiv-icon tiv-icon--send tiv-icon--lg tiv-icon--crystal"></i>
+ *
+ * Secções:
+ *   1. Variáveis de ícones (tamanho, cor)
+ *   2. Sprite SVG inline (uma <svg> escondida com <symbol>)
+ *   3. Classes utilitárias (tamanho · cor · modificadores)
+ *   4. Estados (hover, active, disabled)
+ *
+ * Regra: nunca pintar ícones com cor decorativa. Cor vem sempre do token.
+ */
+
+:root {
+  /* ── 1. Variáveis ──────────────────────────────────────────── */
+  --tiv-icon-size-xs: 16px;   /* caption, inline-meta        */
+  --tiv-icon-size-sm: 20px;   /* botão, body                 */
+  --tiv-icon-size-md: 24px;   /* default                     */
+  --tiv-icon-size-lg: 32px;   /* hero, empty state           */
+  --tiv-icon-stroke: 1.5;     /* px · não subir acima disto  */
+
+  --tiv-icon-color:        var(--tiv-text-2);
+  --tiv-icon-color-idle:   var(--tiv-mute);
+  --tiv-icon-color-hover:  var(--tiv-text-1);
+  --tiv-icon-color-accent: var(--tiv-accent-glow);
+  --tiv-icon-color-crystal-fill: var(--tiv-accent);
+  --tiv-icon-color-danger: #F87171;
+}
+
+/* ── 2. Sprite SVG ─────────────────────────────────────────────
+   Cada <symbol> tem id="tiv-icon-{nome}". Usamos via <use href="#…"/>.
+   Os paths vêm do Iconoir 7.x (24×24, stroke 1.5, sem fill).
+   Não editar paths sem actualizar a tabela em guidelines/iconografia.md. */
+
+.tiv-icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  aria-hidden: true;
+}
+
+.tiv-icon-sprite symbol {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── 3. Base + tamanho ──────────────────────────────────────── */
+
+.tiv-icon {
+  display: inline-block;
+  width: var(--tiv-icon-size-md);
+  height: var(--tiv-icon-size-md);
+  vertical-align: middle;
+  color: var(--tiv-icon-color);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: color var(--tiv-dur-fast) var(--tiv-ease),
+              opacity var(--tiv-dur-fast) var(--tiv-ease);
+}
+
+.tiv-icon--xs { width: var(--tiv-icon-size-xs); height: var(--tiv-icon-size-xs); }
+.tiv-icon--sm { width: var(--tiv-icon-size-sm); height: var(--tiv-icon-size-sm); }
+.tiv-icon--lg { width: var(--tiv-icon-size-lg); height: var(--tiv-icon-size-lg); }
+.tiv-icon--xl { width: 48px; height: 48px; stroke-width: 1.25; }
+
+/* ── 4. Cor ─────────────────────────────────────────────────── */
+
+.tiv-icon--idle    { color: var(--tiv-icon-color-idle); }
+.tiv-icon--accent  { color: var(--tiv-icon-color-accent); }
+.tiv-icon--crystal { color: var(--tiv-icon-color-crystal-fill); }
+.tiv-icon--danger  { color: var(--tiv-icon-color-danger); }
+.tiv-icon--inverse { color: var(--tiv-accent-ink); }    /* sobre cristal fill */
+
+/* ── 5. Estados ─────────────────────────────────────────────── */
+
+.tiv-icon:hover              { color: var(--tiv-icon-color-hover); }
+.tiv-icon:active             { opacity: .8; }
+.tiv-icon[aria-disabled="true"],
+.tiv-icon.is-disabled        { opacity: .35; pointer-events: none; cursor: not-allowed; }
+
+/* spinner · usa-se com classe tiv-icon--loader */
+@keyframes tiv-icon-spin {
+  to { transform: rotate(360deg); }
+}
+.tiv-icon--loader {
+  animation: tiv-icon-spin 0.9s linear infinite;
+  transform-origin: center;
+}
+
+/* ── 6. Posicionamento em botão / campo ─────────────────────── */
+
+button .tiv-icon,
+.tiv-btn .tiv-icon,
+.tiv-field .tiv-icon {
+  margin-right: var(--tiv-space-2);
+}
+
+button .tiv-icon:last-child,
+.tiv-btn .tiv-icon:last-child {
+  margin-right: 0;
+  margin-left: var(--tiv-space-2);
+}
+
+.tiv-field__icon {
+  position: absolute;
+  left: var(--tiv-space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tiv-icon-color-idle);
+  pointer-events: none;
+}
+
+.tiv-field--has-icon .tiv-field__input {
+  padding-left: calc(var(--tiv-icon-size-md) + var(--tiv-space-4));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiv-icon--loader { animation: none; }
+  .tiv-icon         { transition: none; }
+}

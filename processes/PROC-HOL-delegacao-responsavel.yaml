@@ -1,0 +1,103 @@
+id: PROC-HOL-delegacao-responsavel
+versao: "0.1"
+estado: rascunho
+titulo: "Atribuir responsável a uma tarefa ou documento"
+empresa_filha: HOL
+dono_humano: credo
+dono_agente: guardiao
+trigger:
+  tipo: evento
+  descricao: "Tarefa, entregável ou follow-up de acta criado ou reaparece sem Responsável preenchido (query Fibery Task/Document com Responsável null e estado ≠ Terminada)"
+  fonte: "fibery"
+padrao: routing
+entrada:
+  - "Entidade Fibery (Task/Document) com Name, domínio do trabalho identificado"
+  - "Base pessoas-responsabilidades.yaml (Domínio → Responsável por omissão)"
+saida:
+  - "Campo Responsável preenchido com fibery/user correspondente"
+  - "Se sem correspondência: escalada registada ao Credo (@guardiao)"
+criterio_feito:
+  - "Responsável ≠ null na entidade alvo"
+  - "Domínio da tarefa mapeia para a pessoa atribuída em pessoas-responsabilidades.yaml §Matriz"
+  - "Ou escalada registada no Fibery (task/mention) para o Credo com o porquê"
+kpis: []
+gate_promocao: credo
+checklist_tipo: READ-DO
+pause_point: "Quando o domínio da tarefa não bate com a matriz de atribuição"
+golden_run: ""
+proxima_revisao: "2026-12-11"
+passos:
+  - id: P1
+    nome: "Classificar domínio"
+    actor_tipo: agente
+    actor: guardiao
+    comando: ""
+    raci: R
+    ferramenta: "Fibery Task/Document — ler Name, Projecto, Tipo de Task + Description"
+    padrao_local: sequencial
+    entrada: []
+    saida: ["domínio classificado (comercial/conteúdo/equipa/terreno/aprovação/pricing/portfólio)"]
+    criterio_feito: ["domínio escrito na descrição da tarefa ou num comentário da entidade"]
+    teste_embutido: "se a tarefa envolve APROVAR algo (contrato, preço, documento externo) → domínio = aprovação, dono único = Credo"
+    ponto_chave: "Tarefas de gate humano nunca são de atribuição automática"
+    razao: "C6 — agentes não decidem gates"
+    overreach: false
+    seguinte: [P2]
+  - id: P2
+    nome: "Consultar matriz"
+    actor_tipo: sistema
+    actor: sistema
+    comando: ""
+    raci: R
+    ferramenta: "ellocene-ops/data/pessoas-responsabilidades.yaml §Matriz de atribuição"
+    padrao_local: sequencial
+    entrada: ["domínio classificado"]
+    saida: ["pessoa por omissão OU vazio"]
+    criterio_feito: ["matriz consultada; resultado anotado"]
+    teste_embutido: "linha da matriz em branco = não atribuir"
+    ponto_chave: "Sem linha na matriz → escalar, nunca adivinhar"
+    razao: "evita que tudo caia no Credo por omissão"
+    overreach: false
+    seguinte: [P3]
+  - id: P3
+    nome: "Atribuir ou escalar"
+    actor_tipo: agente
+    actor: guardiao
+    comando: ""
+    raci: R
+    ferramenta: "update_entities (Ellocene/Task ou Document) campo Ellocene/Responsável = fibery/user id"
+    padrao_local: sequencial
+    entrada: ["pessoa por omissão da matriz"]
+    saida: ["Responsável preenchido ou escalada ao Credo"]
+    criterio_feito:
+      - "Responsável ≠ null; OU"
+      - "escalada registada (comentário no Fibery + mention Credo) com porquê"
+    teste_embutido: "update falhou = parar, não repetir às cegas"
+    ponto_chave: "Escalada é um resultado válido — atribuição sem correspondência é proibida"
+    razao: "alerta sem destinatário = alerta morto (auditoria P0)"
+    overreach: false
+    seguinte: []
+excepcoes:
+  - se: "tarefa é de aprovação de contrato/preço/gate societário"
+    entao: "atribuir SEMPRE ao Credo e parar"
+    senao: "nunca usar backup para gates"
+  - se: "pessoa por omissão tem >X overdue abertas (limiar cockpit)"
+    entao: "usar backup da matriz + notificar Credo"
+    senao: "atribuir por omissão"
+falhas:
+  - falha: "domínio ambíguo"
+    detectar: "tarefa cruza 2 domínios"
+    fazer: "escolher o domínio dominante + anotar ambiguidade no comentário"
+    must_not: "atribuir a duas pessoas ou deixar sem dono"
+  - falha: "fibery/user inexistente na base"
+    detectar: "pessoa não tem fibery/user (ex. sócio novo)"
+    fazer: "criar sócio/convite Fibery primeiro (handoff @governanca)"
+    must_not: "preencher com texto livre"
+job_aid:
+  - "Gate humano (contrato, pricing, equity) → Credo, sempre."
+  - "Identidade visual / UX design → Credo (nunca Belmiro)."
+  - "Dev de software, MVP, landing, automação → Belmiro."
+  - "API, backend, cibersegurança, providers, Discord → Edson."
+  - "Marketing (copy, gráfico, vídeo, tráfego), facturas, cliente → Celson."
+  - "Networking / parcerias / clientes grandes → Belmiro."
+  - "Sem correspondência → escalar ao Credo, não atribuir."

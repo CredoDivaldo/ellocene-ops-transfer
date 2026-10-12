@@ -1,0 +1,120 @@
+id: PROC-HOL-registo-financeiro
+versao: "0.1"
+estado: activo
+titulo: "Registar e controlar qualquer movimento de dinheiro da holding ou filhas"
+empresa_filha: HOL
+dono_humano: credo
+dono_agente: guardiao
+trigger:
+  tipo: evento
+  descricao: "Qualquer entrada ou saída de dinheiro da empresa (cliente paga, pagar ferramenta, custo, transferência)"
+  fonte: "credo | celson | fibery | whatsapp"
+padrao: sequencial
+entrada:
+  - "Evidência mínima (valor + motivo + data)"
+  - "Comprovativo quando existir (factura, extracto, screenshot transfer)"
+saida:
+  - "Entidade Ellocene/Financeiro criada ou actualizada"
+  - "Comprovativo no Drive (se aplicável)"
+  - "Estado Confirmado ou Pendente com dono"
+criterio_feito:
+  - "Existe entidade no Fibery com Valor + Tipo + Data + Responsável + Referência"
+  - "Se pagamento saiu: comprovativo guardado no Drive"
+  - "Se receita: factura/proforma ligada ou referenciada"
+kpis: []
+gate_promocao: credo
+checklist_tipo: DO-CONFIRM
+pause_point: "Antes de transferir dinheiro ou marcar Confirmado sem comprovativo"
+golden_run: "https://ellocene.fibery.io/Ellocene/Financeiro/7"
+proxima_revisao: "2026-11-08"
+passos:
+  - id: P1
+    nome: "Identificar o tipo de movimento"
+    actor_tipo: humano
+    actor: credo
+    comando: ""
+    raci: A
+    ferramenta: "Job-aid (tipos abaixo)"
+    entrada: ["facto real"]
+    saida: ["tipo escolhido"]
+    criterio_feito: ["Tipo = um dos 5 casos do job-aid"]
+    seguinte: [P2]
+  - id: P2
+    nome: "Criar ou actualizar entidade no Fibery Financeiro"
+    actor_tipo: humano
+    actor: credo
+    comando: ""
+    raci: R
+    ferramenta: "Fibery Ellocene/Financeiro"
+    entrada: ["valor", "data", "tipo", "empresa filha"]
+    saida: ["entidade com public-id"]
+    criterio_feito: ["Name + Valor + Moeda + Data + Tipo + Responsável preenchidos"]
+    seguinte: [P3]
+  - id: P3
+    nome: "Anexar comprovativo no Drive (obrigatório se saída ou receita confirmada)"
+    actor_tipo: humano
+    actor: credo
+    comando: ""
+    raci: R
+    ferramenta: "Drive 02-Financeiro/Comprovativos ou pasta da filha"
+    entrada: ["ficheiro ou screenshot"]
+    saida: ["ficheiro guardado + referência no Fibery"]
+    criterio_feito: ["Referência no Fibery aponta para ficheiro ou diz 'sem comprovativo — motivo'"]
+    seguinte: [P4]
+  - id: P4
+    nome: "Aprovar se for saída ≥ 50.000 AKZ ou não for o próprio Credo a pagar"
+    actor_tipo: humano
+    actor: credo
+    comando: ""
+    raci: A
+    ferramenta: "WhatsApp / acta / comentário Fibery"
+    entrada: ["pedido"]
+    saida: ["aprovação explícita"]
+    criterio_feito: ["Credo disse sim por escrito ou executou ele próprio"]
+    seguinte: [P5]
+  - id: P5
+    nome: "Executar o pagamento ou confirmar a entrada"
+    actor_tipo: humano
+    actor: credo
+    comando: ""
+    raci: R
+    ferramenta: "Multicaixa / BAI / transferência"
+    entrada: ["aprovação"]
+    saida: ["dinheiro movido"]
+    criterio_feito: ["Transferência feita ou dinheiro recebido"]
+    seguinte: [P6]
+  - id: P6
+    nome: "Marcar estado e fechar o dia se for o último movimento"
+    actor_tipo: humano
+    actor: credo
+    comando: ""
+    raci: R
+    ferramenta: "Fibery Estado Financeiro"
+    entrada: ["comprovativo"]
+    saida: ["Confirmado ou Pendente"]
+    criterio_feito: ["Estado actualizado; se Pendente, data de follow-up mental ≤ 48h"]
+    seguinte: []
+excepcoes:
+  - se: "Sem comprovativo imediato"
+    entao: "Criar entidade Estado=Pendente + Referência='aguarda comprovativo' + resolver em ≤48h"
+    senao: "Nunca marcar Confirmado sem evidência"
+  - se: "Dinheiro ainda em conta pessoal"
+    entao: "Referência deve dizer 'conta pessoal Credo — aguarda BAI'"
+    senao: "Após BAI: transferir e actualizar Referência"
+falhas:
+  - falha: "Movimento feito sem entidade Fibery"
+    detectar: "Rotina diária / saldo não bate"
+    fazer: "Criar entidade retroactiva no mesmo dia + nota 'registo tardio'"
+    must_not: "Ignorar e continuar"
+  - falha: "Pendente >48h"
+    detectar: "Automação Fibery ou check diário"
+    fazer: "Credo resolve ou cancela no mesmo dia"
+    must_not: "Deixar acumular"
+job_aid:
+  - "5 tipos: Receita cliente | Pagamento ferramenta/custo | Custo pessoal/equipa | Transferência inter-filha | Outro (saldo/ajuste)"
+  - "Sempre: Valor + Data + Tipo + Responsável no Fibery ANTES ou no mesmo momento do dinheiro"
+  - "Saída: comprovativo obrigatório (screenshot/transferência/factura)"
+  - "Receita: factura proforma ou comprovativo de entrada"
+  - "Onde guardar: Drive/ELLOCENE/02-Financeiro/Comprovativos/YYYY-MM/ ou pasta da filha"
+  - "Quem aprova saídas: só Credo (Accountable)"
+  - "Rotina diária 5 min: ver pendentes + saldo mental vs Fibery"

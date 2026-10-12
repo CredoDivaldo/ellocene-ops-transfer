@@ -1,0 +1,51 @@
+# process-spec v1 — gramática, não conteúdo de domínio
+# Fonte: arquitectura CTO 2026-09-07 + template CHRO (RACI-A, TWI)
+
+id: PROC-HOL-exemplo          # PROC-<FILHA|HOL>-<slug>
+versao: "0.1"
+estado: rascunho              # rascunho | em_revisao | aprovado | activo | arquivado
+titulo: "Verbo + objecto no infinitivo"
+empresa_filha: HOL            # HOL | ALT | BLI | PYR | TIV
+dono_humano: credo            # sempre um humano — DRI / Accountable
+dono_agente: guardiao         # orquestrador por omissão; nunca Accountable de gate jurídico
+trigger:
+  tipo: evento                # comando | evento | calendario | limiar_kpi
+  descricao: "Frase testável — o que se observa no mundo"
+  fonte: "actas | registo | credo | fibery"
+padrao: sequencial            # sequencial | paralelo | routing | supervisor | event-driven | misto
+entrada: []                   # artefactos nomeados, não "informação"
+saida: []
+criterio_feito: []            # binário, observável
+kpis: []                      # ids Ellocene/KPI ou vazio + handoff a kpis
+gate_promocao: credo
+checklist_tipo: DO-CONFIRM    # READ-DO | DO-CONFIRM
+pause_point: "Quando abrir este documento"
+golden_run: ""                # URL Fibery da última execução correcta (nunca file://)
+proxima_revisao: "2026-12-07"
+passos:
+  - id: P1
+    nome: "Verbo + objecto"
+    actor_tipo: agente        # agente | humano | sistema
+    actor: actas              # nome do agente, "credo", ou sistema
+    comando: gerar-acta       # vazio se humano/sistema; MUST existir no squad se agente
+    raci: R                   # R | A | C | I — exactamente um A no processo
+    ferramenta: "Fibery Meeting + comando *gerar-acta"
+    padrao_local: sequencial
+    entrada: []
+    saida: []
+    criterio_feito: []
+    teste_embutido: ""        # Spear-Bowen: sinal automático de problema (timing, output, sim/não)
+    ponto_chave: ""           # TWI: faz/desfaz, gate, ou jeito — folha de instrutor, não job aid
+    razao: ""                 # TWI: porque
+    overreach: false
+    seguinte: [P2]
+excepcoes:
+  - se: "condição objectiva"
+    entao: "acção + processo ligado"
+    senao: "default seguro e notificar quem via canal"
+falhas:
+  - falha: ""
+    detectar: ""
+    fazer: ""
+    must_not: ""
+job_aid: []                   # 5–9 killer items extraídos dos passos, não inventados

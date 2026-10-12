@@ -1,0 +1,37 @@
+---
+name: nomenclatura-padroes
+description: "Padrões de nomenclatura da holding Ellocene — para ficheiros, documentos, entidades Fibery e deliverables."
+verificado_em: "2026-08-17"
+---
+
+# Nomenclatura — Ellocene
+
+## Ficheiros e pastas
+
+- kebab-case para ficheiros: `plano-semanal-2026-W33.md`
+- Sem acentos em nomes de ficheiro: `reuniao-socios.md` (não `reunião-sócios.md`)
+- Datas ISO: `YYYY-MM-DD` em nomes e conteúdo
+- Prefijo de filha quando aplicável: `PYR-`, `BLI-`, `TIV-`, `ALT-`, `HOL-`
+
+## Documentos Fibery (Ellocene/Document)
+
+- Nome: objectivo do documento (ex: "Pacto Social Ellocene — v1.0")
+- Campos: Codigo, Versao, Area Documento, Tipo de Documento, Subtipo Documento, Tags
+
+## Deliverables (05_Deliverables/)
+
+- `<artefacto>-v<n>.md` — versão incrementada só em mudança material
+- Ex: `estado-holding-2026-08-v1.pdf`, `contrato-servicos-blip-v1.docx`
+
+## Tarefas Fibery (Ellocene/Task)
+
+- Títulos accionáveis, nunca códigos opacos
+- Ex: "Redigir minuta SCP Jericó" (não "TARF-014")
+
+## Control surfaces (02_Control/)
+
+- `02_Control/<NN>_<Nome>/state/<dominio>-current.md`
+
+## Reuniões (Ellocene/Meeting)
+
+- Nome: `<Tipo> — <Tema> — <Data>` ex: "PDS Semanal — Operacoes — 2026-08-17"

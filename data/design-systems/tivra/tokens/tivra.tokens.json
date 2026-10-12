@@ -1,0 +1,119 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "name": "Tivra Design Tokens",
+  "version": "2.0.0",
+  "updated": "2026-09-16",
+  "status": "lock — fonte canónica em 05-Marketing/Brand-Book/",
+  "description": "Harness de agente — CLI, desktop e voz. Identidade angular, preta, com cristal indigo como acento e a luz pálida como texto. A nova direcção artística (The Light Seam) é o princípio conceptual que sustenta toda a composição visual.",
+  "brand": {
+    "name": "Tivra",
+    "code": "TIV",
+    "autonomous": true,
+    "thesis": "Pagas o mês. Usas à vontade.",
+    "logoPrimary": "isotipo cristal-T",
+    "wordmark": "tivra-logotipo.svg",
+    "artDirection": "The Light Seam — contenção, passagem luminosa, abertura"
+  },
+  "color": {
+    "ground": {
+      "bg":        { "value": "#000000", "type": "color", "description": "Ground absoluto" },
+      "surface":   { "value": "#050504", "type": "color", "description": "1ª camada (cards, topbar)" },
+      "surface-2": { "value": "#080807", "type": "color", "description": "2ª camada (dentro de card)" },
+      "selected":  { "value": "#121211", "type": "color", "description": "Hover · row hovered · activo" },
+      "elevated":  { "value": "#1A1918", "type": "color", "description": "Modal, dropdown" }
+    },
+    "accent": {
+      "crystal":   { "value": "#4B3AFF", "type": "color", "description": "Só fills. CTA, pill, mark. branco sobre cristal 6.27:1." },
+      "ink":       { "value": "#FFFFFF", "type": "color", "description": "Texto sobre cristal" },
+      "glow":      { "value": "#A5B4FC", "type": "color", "description": "Só texto, arestas, hover. Sobre bg 10.53:1." },
+      "dim":       { "value": "#1B1642", "type": "color", "description": "Fill tingido · badges outline" }
+    },
+    "agents": {
+      "cristal": { "value": "#4B3AFF", "type": "color", "description": "Fallback · agente activo · ink branco" },
+      "azul":    { "value": "#3B82F6", "type": "color", "description": "Escrita · ink #050504" },
+      "ciano":   { "value": "#0EA5E9", "type": "color", "description": "Código · ink #050504" },
+      "teal":    { "value": "#14B8A6", "type": "color", "description": "Contas · ink #050504" },
+      "lilas":   { "value": "#A78BFA", "type": "color", "description": "Design · ink #050504" },
+      "ink":     { "value": "#050504", "type": "color", "description": "Dark ink para fills claros" },
+      "ink-2":   { "value": "#0B0F1F", "type": "color", "description": "Fallback ligeiramente menos preto" }
+    },
+    "text": {
+      "1":  { "value": "#F5F5F7", "type": "color", "description": "Texto principal · 19.3:1 AAA" },
+      "2":  { "value": "#D1D5DB", "type": "color", "description": "Lead, body · 14.3:1 AAA" },
+      "3":  { "value": "#9CA3AF", "type": "color", "description": "Sublabel, caption · 8.3:1 AAA" },
+      "mute":   { "value": "#8B95A5", "type": "color", "description": "Nav idle, footer · 6.9:1 AA" },
+      "mute-2": { "value": "#5C5C5C", "type": "color", "description": "Ícone desactivado (decor)" }
+    },
+    "line": { "value": "#242423", "type": "color", "description": "Hairline, separadores" }
+  },
+  "typography": {
+    "fontFamily": {
+      "heading": { "value": "Michroma, sans-serif", "type": "fontFamilies", "description": "Display, H1, H2 — um peso" },
+      "body":    { "value": "Raleway, sans-serif",  "type": "fontFamilies", "description": "ExtraLight 200 no texto; Medium 500 nos botões e preço" },
+      "logo":    { "value": "Tivra wordmark (custom)", "type": "fontFamilies", "description": "Não substituir por Michroma" }
+    },
+    "fontWeight": {
+      "extralight": { "value": 200, "type": "fontWeights" },
+      "light":      { "value": 300, "type": "fontWeights" },
+      "regular":    { "value": 400, "type": "fontWeights" },
+      "medium":     { "value": 500, "type": "fontWeights" }
+    },
+    "mono": { "value": false, "description": "Banido. CLI usa Raleway ExtraLight." },
+    "scale": {
+      "display": { "fontFamily": "heading", "fontSize": "52px",  "lineHeight": 1.22, "fontWeight": 400, "letterSpacing": "0.05em", "textTransform": "uppercase" },
+      "h1":      { "fontFamily": "heading", "fontSize": "26px",  "lineHeight": 1.35, "fontWeight": 400, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+      "h2":      { "fontFamily": "heading", "fontSize": "12px",  "lineHeight": 1.5,  "fontWeight": 400, "letterSpacing": "0.18em", "textTransform": "uppercase" },
+      "subhead": { "fontFamily": "body",    "fontSize": "12px",  "lineHeight": 1.4,  "fontWeight": 200, "letterSpacing": "0.28em", "textTransform": "uppercase" },
+      "lead":    { "fontFamily": "body",    "fontSize": "20px",  "lineHeight": 1.55, "fontWeight": 200, "letterSpacing": "0" },
+      "body":    { "fontFamily": "body",    "fontSize": "17px",  "lineHeight": 1.6,  "fontWeight": 200, "letterSpacing": "0" },
+      "caption": { "fontFamily": "body",    "fontSize": "12px",  "lineHeight": 1.45, "fontWeight": 200, "letterSpacing": "0.04em" },
+      "button":  { "fontFamily": "body",    "fontSize": "13px",  "lineHeight": 1.2,  "fontWeight": 500, "letterSpacing": "0.16em", "textTransform": "uppercase" },
+      "price":   { "fontFamily": "body",    "fontSize": "32px",  "lineHeight": 1.2,  "fontWeight": 500, "letterSpacing": "0" }
+    }
+  },
+  "space": {
+    "1":  { "value": "4px",   "type": "spacing" },
+    "2":  { "value": "8px",   "type": "spacing" },
+    "3":  { "value": "12px",  "type": "spacing" },
+    "4":  { "value": "16px",  "type": "spacing" },
+    "5":  { "value": "24px",  "type": "spacing" },
+    "6":  { "value": "32px",  "type": "spacing" },
+    "7":  { "value": "48px",  "type": "spacing" },
+    "8":  { "value": "64px",  "type": "spacing" },
+    "9":  { "value": "96px",  "type": "spacing" },
+    "10": { "value": "160px", "type": "spacing" }
+  },
+  "radius": {
+    "none":  { "value": "0px",     "type": "borderRadius", "description": "Cards, fields, nav, sections" },
+    "sm":    { "value": "4px",     "type": "borderRadius", "description": "Botões apenas" },
+    "md":    { "value": "12px",    "type": "borderRadius", "description": "Reservado para native platform" },
+    "full":  { "value": "9999px",  "type": "borderRadius", "description": "Agent avatars 48px" }
+  },
+  "stroke": {
+    "hairline": { "value": "1px", "type": "borderWidth" }
+  },
+  "elevation": {
+    "0": { "value": "0 0 0 0 transparent", "type": "boxShadow", "description": "Ground" },
+    "1": { "value": "inset 0 1px 0 rgba(165,180,252,0.09), 0 8px 24px -10px rgba(0,0,0,0.6)",  "type": "boxShadow", "description": "Surface" },
+    "2": { "value": "inset 0 1px 0 rgba(165,180,252,0.10), 0 16px 40px -16px rgba(0,0,0,0.7)", "type": "boxShadow", "description": "Surface-2" },
+    "3": { "value": "inset 0 1px 0 rgba(165,180,252,0.13), 0 32px 60px -20px rgba(0,0,0,0.8)", "type": "boxShadow", "description": "Elevated" }
+  },
+  "motion": {
+    "ease":      { "value": "ease-in-out", "type": "cubicBezier" },
+    "dur-fast":  { "value": "200ms", "type": "duration" },
+    "dur-med":   { "value": "500ms", "type": "duration" },
+    "wav-cycle": { "value": "0.7s",  "type": "duration" }
+  },
+  "layout": {
+    "container-max": { "value": "1180px", "type": "dimension" },
+    "gutter":        { "value": "24px",   "type": "dimension" },
+    "bp-md-down":    { "value": "900px",  "type": "dimension" }
+  },
+  "rules": {
+    "equilibrio": "O arco/CAG aparece uma vez por frame. Campo com CAG → T neutro. Campo liso → T pode levar textura. Favicon: T branco no preto.",
+    "cag": "Camada B. Spec guidelines/CAG-cristal-angular-granular.md. Não é UI.",
+    "lightSeam": "Princípio conceptual da direcção artística. Spec guidelines/light-seam.md.",
+    "lightTheme": "Inverter fundo e T. Cristal e luz não invertem.",
+    "accentRoles": "Cristal = fills. Luz = texto, arestas, hover. Nunca trocar."
+  }
+}

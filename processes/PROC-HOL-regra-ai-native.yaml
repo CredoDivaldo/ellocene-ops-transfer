@@ -1,0 +1,60 @@
+id: PROC-HOL-regra-ai-native
+versao: "0.1"
+estado: rascunho
+titulo: "Regra AI-native: o que um agente pode e não pode fazer na holding"
+empresa_filha: HOL
+dono_humano: credo
+dono_agente: guardiao
+trigger:
+  tipo: evento
+  descricao: "Qualquer agente do squad executa uma acção de escrita no Fibery/Drive ou despacha trabalho"
+  fonte: "credo"
+padrao: sequencial
+entrada:
+  - "Ação pretendida (mutar Task/Document/Financeiro, atribuir dono, marcar estado, gerar documento)"
+saida:
+  - "Ação executada OU bloqueada com escalada ao Credo"
+criterio_feito:
+  - "Toda mutação respeita os MUST/MUST NOT desta regra"
+  - "Bloqueios registados com mention ao Credo"
+kpis: []
+gate_promocao: credo
+checklist_tipo: READ-DO
+pause_point: "Antes de qualquer escrita em Document (estado Activo) ou Financeiro"
+golden_run: ""
+proxima_revisao: "2026-12-11"
+passos:
+  - id: P1
+    nome: "Consultar base de pessoas"
+    actor_tipo: agente
+    actor: guardiao
+    comando: ""
+    raci: R
+    ferramenta: "ellocene-ops/data/pessoas-responsabilidades.yaml"
+    criterio_feito: ["base consultada antes de atribuir dono"]
+    seguinte: [P2]
+  - id: P2
+    nome: "Verificar gate"
+    actor_tipo: sistema
+    actor: sistema
+    raci: R
+    ferramenta: "checklist abaixo"
+    criterio_feito: ["gate verificado"]
+    seguinte: []
+excepcoes:
+  - se: "MCP Fibery indisponível"
+    entao: "escrever .md local + registar no Fibery quando voltar (governanca-documentos.md)"
+    senao: "nunca deixar entidade Fibery sem dono"
+falhas:
+  - falha: "agente tentou marcar Document como Activo"
+    detectar: "Aprovado por OU Data de Aprovacao null"
+    fazer: "deixar Em Revisao/Aguardando Aprovacao + mention ao Credo"
+    must_not: "marcar Activo sem gate"
+job_aid:
+  - "Agente MAY mutar Task/Project apenas com Responsável + Data de Entrega preenchidos."
+  - "Agente MUST NOT marcar Document Activo sem Aprovado por + Data de Aprovacao (gate Credo)."
+  - "Agente MUST NOT atribuir dono fora da matriz pessoas-responsabilidades.yaml."
+  - "Agente MUST NOT executar processo sem spec activo (@processos desenhar primeiro)."
+  - "Agente MUST NOT criar base `Ellocene/Processo` sem gate do Credo."
+  - "Agente MUST NOT tocar Financeiro sem dono + referência de factura."
+  - "Agente SHOULD citar fonte (Fibery ID / URL) em toda escrita."

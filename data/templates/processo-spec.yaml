@@ -1,0 +1,26 @@
+# Copiar e preencher. Campos vazios = recusa em *validar-processo.
+id: PROC-HOL-slug
+versao: "0.1"
+estado: rascunho
+titulo: ""
+empresa_filha: HOL
+dono_humano: credo
+dono_agente: guardiao
+trigger:
+  tipo: evento
+  descricao: ""
+  fonte: ""
+padrao: sequencial
+entrada: []
+saida: []
+criterio_feito: []
+kpis: []
+gate_promocao: credo
+checklist_tipo: DO-CONFIRM
+pause_point: ""
+golden_run: ""
+proxima_revisao: ""
+passos: []
+excepcoes: []
+falhas: []
+job_aid: []

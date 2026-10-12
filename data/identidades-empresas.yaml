@@ -1,0 +1,24 @@
+---
+name: identidades-empresas
+description: "Mapa de identidade visual por empresa. Fonte única de tokens: Altars-Group/design-systems (vendored em data/design-systems/)."
+verificado_em: "2026-09-25"
+fonte_design_systems: "https://github.com/Altars-Group/design-systems"
+---
+
+# Identidades por Empresa (Consumidas pelo @docs e pelo doc-engine)
+
+| Empresa | Código | Design System | Estado | Tokens no Motor | Notas |
+|---|---|---|---|---|---|
+| **Ellocene Holding** | HOL | Holding (Âncora/Pergaminho) | 🟡 A recolher | Fallback para filhas sem marca | Fundo clássico sóbrio, formal neutro |
+| **Blimari** | BLI | Design System v1.0 | 🟢 Completo | `blimari.print.css` (56 tokens) | Laranja `#FF6A00`, Creme `#FAF6F1`, Carvão `#161616`, Geist |
+| **Altars** | ALT | Método Aurora | 🟢 Completo | `altars.print.css` (20 tokens) | Off-white `#fbfaf7`, Dourado `#b9974a`, Dourado Escuro `#7c5f31`, Sans fina |
+| **Tivra** | TIV | Design System v2.0 (Cristal/Luz) | 🟢 Completo | `tivra.print.css` (56 tokens) | Preto `#000000`, Cristal `#4B3AFF`, Luz `#A5B4FC`, Michroma + Raleway |
+| **Piramyd** | PYR | piramyd.cloud | ⬜ Vazio | Usa Holding por defeito | Recolher Brand-Book quando disponível |
+| **AICOS** | AICOS | AI Company OS | ⬜ Neutro | Usa Holding por defeito | Sistema neutro Tailwind |
+
+## Regras de Execução
+
+1. **Fonte Única:** Nenhuma cor deve ser inventada num template. Toda a variável CSS deve vir de `data/design-systems/{empresa}/`.
+2. **Fallback Seguro:** Se a empresa não tiver tokens definidos, o motor assume a identidade da Holding.
+3. **Auditoria Obrigatória:** Antes de qualquer PDF ir para o cliente, `tools/audit-tokens.sh` deve passar com `exit 0`.
+4. **Cliente = PDF:** Qualquer documento entregue externamente a clientes é estritamente em PDF (via WeasyPrint).

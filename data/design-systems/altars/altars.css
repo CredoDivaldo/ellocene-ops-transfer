@@ -1,0 +1,25 @@
+/* AUTO-GENERATED from altars/tokens.json — NÃO EDITAR DIRECTAMENTE */
+/* Para alterar, edite tokens.json e corra: node tools/build-tokens.js altars */
+
+:root {
+  --color-bg: #fbfaf7;
+  --color-panel: #fdfcf8;
+  --color-ink: #1a1815;
+  --color-text: #2b2823;
+  --color-muted: #57524a;
+  --color-gold: #b9974a;
+  --color-gold-soft: #d9c9a0;
+  --color-gold-deep: #7c5f31;
+  --color-line: #e6e0d2;
+  --typography-font-family-sans: -apple-system, 'Helvetica Neue', Helvetica, 'Segoe UI', sans-serif;
+  --typography-font-weight-thin: 200;
+  --typography-font-weight-light: 300;
+  --typography-font-weight-regular: 400;
+  --typography-font-weight-medium: 500;
+  --typography-font-size-h1: 26pt;
+  --typography-font-size-h2: 17pt;
+  --typography-font-size-h3: 11pt;
+  --typography-font-size-lead: 11.5pt;
+  --typography-font-size-body: 10.5pt;
+  --typography-font-size-caption: 8pt;
+}

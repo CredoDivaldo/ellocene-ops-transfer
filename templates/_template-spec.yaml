@@ -1,0 +1,59 @@
+# Template Specification (Modelo Canónico)
+# Inspirado no padrão processo-spec.yaml do squad ellocene-ops
+
+id: TPL-ALT-proposta-comercial
+versao: "1.0.0"
+estado: activo                 # rascunho | em_revisao | aprovado | activo | obsoleto
+
+metadata:
+  titulo: "Proposta Comercial — Altars (Método Aurora)"
+  empresa_filha: ALT           # HOL | ALT | BLI | PYR | TIV | AICOS
+  tipo_documento: proposal     # proposal | scp | contract | report | sop | acta | dossier
+  destinatario: cliente        # interno | cliente (cliente EXIGE PDF via WeasyPrint — IMP-007)
+  formato_saida: pdf
+  identidade: altars           # Chave em data/design-systems/
+  ficheiro_template: proposta-comercial-template.html
+
+governanca:
+  dono_humano: credo           # Sempre humano (Credo)
+  agente_responsavel: docs     # Único produtor de artefactos visuais
+  aprovado_por: credo
+  data_aprovacao: "2026-09-25"
+  golden_run: "https://ellocene.fibery.io/Ellocene/Document/proposta-esteves-v2"
+
+regras_de_ouro:
+  - "Nenhum detalhe técnico excessivo (cliente é de comunicação/negócio)"
+  - "Zero referências a pessoas ou cargos internos da holding (sem Credo, CTO, Belmiro, Celson)"
+  - "Linguagem persuasiva, comercial e enxuta (estilo proposta Sunel)"
+  - "Máximo de 10 páginas A4"
+  - "Design system Altars estrito: off-white #fbfaf7, dourado #b9974a, sans-serif fina"
+
+campos_obrigatorios:
+  - CLIENTE-NAME
+  - CLIENTE-CONTACTO
+  - SERVICO-TITULO
+  - DATA
+  - OPORTUNIDADE-DESCRICAO
+  - SOLUCAO-DESCRICAO
+  - PROBLEMA-DESCRICAO
+  - PONTOS-1
+  - PONTOS-2
+  - PONTOS-3
+  - COMO-FUNCIONA
+  - CAPACIDADES-DESCRICAO
+  - FUNC-1
+  - FUNC-2
+  - FUNC-3
+  - FUNC-4
+  - CRONOGRAMA-DESCRICAO
+  - ENTREGA-1
+  - ENTREGA-2
+  - ENTREGA-3
+
+criterios_de_feito:
+  - "[ ] Todas as variáveis obrigatórias foram substituídas"
+  - "[ ] Nenhum placeholder [[...]] ou {{...}} sobreviveu no output"
+  - "[ ] Audit de tokens CSS passou com exit 0 (sem variáveis indefinidas)"
+  - "[ ] PDF compilado pelo WeasyPrint sem avisos de overflow ou erros críticos"
+  - "[ ] Documento gravado na pasta do cliente no Drive sob 04-Entregaveis/"
+  - "[ ] Entidade registada no Fibery com link para o Drive (sem file://)"

@@ -1,0 +1,73 @@
+---
+name: biblioteca-conhecimento
+description: "Fontes de conhecimento credíveis que os agentes do Conselho devem pesquisar dinamicamente. Princípio: NUNCA condensar conhecimento em skills — cada conselheiro pesquisa estas fontes (e outras) a cada pedido e cita o que usou."
+verificado_em: "2026-08-17"
+---
+
+# Biblioteca de Conhecimento — fontes dinâmicas do Conselho
+
+## Livros (biblioteca local real)
+
+**Localização:** `/Users/user/30_Resources/Books/`
+**Total verificado:** 72+ livros (epub/pdf) + pastas por categoria
+
+| Categoria | Caminho | Conteúdo típico |
+|-----------|---------|-----------------|
+| Business | `30_Resources/Books/Business/` | $100M Offers (Hormozi), The 10X Rule (Cardone), e mais |
+| AI | `30_Resources/Books/AI/` | Co-Intelligence (Mollick), Building Agentic AI Systems |
+| Marketing | `30_Resources/Books/Marketing/` | Copywriting Secrets (Edwards) e mais |
+| Finance | `30_Resources/Books/Finance/` | Rich Dad Poor Dad, Personal Finance For Dummies, 5 Types of Wealth |
+| Self-Development | `30_Resources/Books/Self-Development/` | Mastery (Greene), Psycho-Cybernetics, Silva Mind Control |
+| Creativity | `30_Resources/Books/Creativity/` | Steal Like an Artist, Show Your Work! (Kleon) |
+| Education | `30_Resources/Books/Education/` | SAT Prep e mais |
+| Programming | `30_Resources/Books/Programming/` | — |
+| Productivity | `30_Resources/Books/Productivity/` | — |
+| Biography | `30_Resources/Books/Biography/` | — |
+| Fashion Design | `30_Resources/Books/Fashion%20Design/` | — |
+| 100M-Offers-Alex-Hormozi | `30_Resources/Books/100M-Offers-Alex-Hormozi/` | Dossier Hormozi |
+
+> Protocolo do conselheiro:
+> 1. Antes de responder, verificar `30_Resources/Books/<categoria>/` para livros relevantes.
+> 2. O Credo tem **acesso ilimitado a mais livros** — se a obra necessária não estiver local, pedir/recomendá-la em vez de inventar.
+> 3. Quando usar um livro, citar: título, autor, categoria e contexto da ideia usada.
+> 4. Os conselheiros podem ler/extrair conteúdo de `.epub`/`.pdf` disponíveis localmente (extract text) para fundamentar conselhos.
+
+## Livros recomendados (a adquirir quando relevante)
+
+| Área | Obra | Porquê |
+|------|------|--------|
+| Estratégia | Good Strategy Bad Strategy (Rumelt) | Estratégia como diagnóstico + política + acção |
+| Finanças | Venture Deals (Feld) | Termos de investimento para a fase SCP/investidores |
+| Vendas | Predictable Revenue | Geração de pipeline previsível B2B |
+| Pessoas | High Output Management (Grove) | Gestão de equipas em escala |
+| Marketing | Building a StoryBrand (Miller) | Clareza de mensagem por marca/filha |
+
+## Legislação Angolana (jurídico)
+
+| Tema | Fonte |
+|------|-------|
+| Sociedades comerciais | Lei 1/04 (Lei das Sociedades Comerciais), Código das Sociedades |
+| Comércio | Código Comercial (1888, com alterações) |
+| Arbitragem | Lei 16/03 |
+| Fiscal | Código do IRT, Código do IRC, Código do IVA, Regime Geral |
+| SCP | Regime jurídico da Sociedade em Conta de Participação |
+| Registo comercial | Regime do Registo Comercial (Conservatória) |
+| Sectorial | Regulação banca (BNA), petróleo (ANPG, Lei 10/04 e alterações), telecom (INACOM), seguros (ARSEG) |
+
+> @legal pesquisa sempre a legislação actualizada antes de redigir. Nunca inventa cláusulas nem cita leis desactualizadas sem verificar.
+
+## Fontes Web / Mercado
+
+| Uso | Fontes |
+|-----|--------|
+| Benchmarks de mercado | Pesquisa web (mercados, concorrentes, preços) |
+| Notícias | Fontes angolanas (Jornal de Angola, Expansão, Forbes África) e internacionais |
+| Casos de estudo | Y Combinator, a16z, Stripe Press, Harvard Business Review, SSRN |
+| Dados financeiros | Bloomberg, relatórios sectoriais, IMF Angola |
+
+## Regra de ouro dos conselheiros
+
+1. ANTES de responder, pesquisa (livros locais, legislação, web, benchmarks).
+2. CITA as fontes que usou (título, autor, caminho/URL).
+3. Se não sabe ou não encontrou → diz "não tenho fonte fiável para isto" em vez de inventar.
+4. Aplica o contexto angolano/africano: benchmarks do Vale do Silício valem como referência, mas adaptados à realidade de Luanda e dos PALOP.

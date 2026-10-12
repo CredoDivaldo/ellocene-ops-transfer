@@ -1,0 +1,66 @@
+/* AUTO-GENERATED from tivra/tokens.json — NÃO EDITAR DIRECTAMENTE */
+/* Para WeasyPrint / PDF formal */
+
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+:root {
+  --color-ground-bg: #000000;
+  --color-ground-surface: #050504;
+  --color-ground-surface-2: #080807;
+  --color-ground-selected: #121211;
+  --color-ground-elevated: #1A1918;
+  --color-accent-crystal: #4B3AFF;
+  --color-accent-ink: #FFFFFF;
+  --color-accent-glow: #A5B4FC;
+  --color-accent-dim: #1B1642;
+  --color-agents-cristal: #4B3AFF;
+  --color-agents-azul: #3B82F6;
+  --color-agents-ciano: #0EA5E9;
+  --color-agents-teal: #14B8A6;
+  --color-agents-lilas: #A78BFA;
+  --color-agents-ink: #050504;
+  --color-agents-ink-2: #0B0F1F;
+  --color-text-1: #F5F5F7;
+  --color-text-2: #D1D5DB;
+  --color-text-3: #9CA3AF;
+  --color-text-mute: #8B95A5;
+  --color-text-mute-2: #5C5C5C;
+  --color-line: #242423;
+  --typography-font-family-heading: Michroma, sans-serif;
+  --typography-font-family-body: Raleway, sans-serif;
+  --typography-font-family-logo: Tivra wordmark (custom);
+  --typography-font-weight-extralight: 200;
+  --typography-font-weight-light: 300;
+  --typography-font-weight-regular: 400;
+  --typography-font-weight-medium: 500;
+  --typography-mono: false;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 160px;
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-full: 9999px;
+  --stroke-hairline: 1px;
+  --elevation-0: 0 0 0 0 transparent;
+  --elevation-1: inset 0 1px 0 rgba(165,180,252,0.09), 0 8px 24px -10px rgba(0,0,0,0.6);
+  --elevation-2: inset 0 1px 0 rgba(165,180,252,0.10), 0 16px 40px -16px rgba(0,0,0,0.7);
+  --elevation-3: inset 0 1px 0 rgba(165,180,252,0.13), 0 32px 60px -20px rgba(0,0,0,0.8);
+  --motion-ease: ease-in-out;
+  --motion-dur-fast: 200ms;
+  --motion-dur-med: 500ms;
+  --motion-wav-cycle: 0.7s;
+  --layout-container-max: 1180px;
+  --layout-gutter: 24px;
+  --layout-bp-md-down: 900px;
+}
